@@ -185,7 +185,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI )
 			'shortdesc' => 'Convert WordPress site from HTTP to HTTPS',
 			'synopsis' => '',
 			'when' => ''
-			) )
+			) );
 		// WP_CLI::add_command( 'wp2ssl', array(
 		// 	$convert_site_to_ssl,
 		// 	'convert_to_ssl',
