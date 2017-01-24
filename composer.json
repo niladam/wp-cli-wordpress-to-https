@@ -5,7 +5,7 @@
   "keywords": ["wp-cli", "git", "dump", "mysql", "search-replace", "uploads", "wordpress", "wordpress-to-https"],
   "homepage": "https://github.com/niladam/wp-cli-wordpress-to-https",
   "license": "MIT",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "authors": [
     {
       "name": "Madalin Tache",

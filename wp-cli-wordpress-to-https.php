@@ -1,9 +1,11 @@
 <?php
+namespace WP_CLI\MigrateToSSL;
+
 /**
  * Plugin Name: WordPress to HTTPS
  * Plugin URI:  https://madalin.eu
  * Description: Quickly move WordPress sites to HTTPS
- * Version:     0.1.1
+ * Version:     0.1.2
  * Author:      Madalin Tache
  * Author URI:  https://madalin.eu
  * Donate link: https://ko-fi.com/A204JA0
@@ -34,21 +36,17 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-if ( defined( 'WP_CLI' ) && WP_CLI )
-{
+if ( ! ( defined('WP_CLI') && WP_CLI ) ) {
+	return;
+}
+
+// if ( defined( 'WP_CLI' ) && WP_CLI )
+// {
 	if ( ! class_exists( 'WP2_ssl' ) )
 	{
-		class WP2_ssl extends WP_CLI_Command {
+		class WP2_ssl {
 			private $home_dir;
-			private $siteurl;
-			/**
-			 * * Let's construct..
-			 * */
-			function __construct()
-			{
-				$this->home_dir = get_home_path();
-				$this->siteurl = get_option( 'siteurl');
-			}
+			private $siteurlpage;
 
 			/**
 			 * Returns true if all requirements are met.
@@ -57,13 +55,20 @@ if ( defined( 'WP_CLI' ) && WP_CLI )
 			 */
 			public function verify_requirements()
 			{
+				$this->home_dir = getcwd();
+				$this->siteurlpage = \get_option( 'siteurl' );
+				// WP_CLI::log(get_option( '' ));
 				if ( ! is_writable($this->home_dir) )
 				{
 					WP_CLI::error( 'Your WordPress root folder is not writeable. Bailing.' );
 				}
-				if ( parse_url($this->siteurl, PHP_URL_SCHEME) === 'https')
+				if ( parse_url($this->siteurlpage, PHP_URL_SCHEME) === 'https')
 				{
 					WP_CLI::error( 'Your website is already using HTTPS. There\'s no need to use this package.' );
+				}
+				if ( $this->siteurlpage === '')
+				{
+					WP_CLI::error( 'Could not get the siteurlpage.' );
 				}
 				return true;
 			}
@@ -169,26 +174,20 @@ if ( defined( 'WP_CLI' ) && WP_CLI )
 		 *
 		 * @return WP2_ssl
 		 */
-		function wp2_ssl()
+		function wp_to_ssl()
 		{
 			return new WP2_ssl;
 		}
 
-		$convert_site_to_ssl = wp2_ssl();
+		$convert_site_to_ssl = wp_to_ssl();
 
 		/**
 		 * Add wp2ssl as a WP CLI command.
 		 */
-		WP_CLI::add_command( 'wp2ssl', $convert_site_to_ssl, $args = array(
-			'before_invoke' => '',
-			'after_invoke' => '',
-			'shortdesc' => 'Convert WordPress site from HTTP to HTTPS',
-			'synopsis' => '',
-			'when' => ''
-			) );
-		// WP_CLI::add_command( 'wp2ssl', array(
-		// 	$convert_site_to_ssl,
-		// 	'convert_to_ssl',
-		// ), $convert_site_to_ssl->convert_to_ssl() );
+		WP_CLI::add_command( 'wp2ssl', array(
+			$convert_site_to_ssl,
+			'convert_to_ssl',
+		), $convert_site_to_ssl->convert_to_ssl(), $args = array('when' => 'after_wp_load') );
+
 	}
-}
+// }
