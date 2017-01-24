@@ -1,0 +1,22 @@
+{
+  "name": "niladam/wp-cli-wordpress-to-https",
+  "description": "Quickly move WordPress sites to HTTPS",
+  "type": "wp-cli-package",
+  "keywords": ["wp-cli", "git", "dump", "mysql", "search-replace", "uploads", "wordpress", "wordpress-to-https"],
+  "homepage": "https://github.com/niladam/wp-cli-wordpress-to-https",
+  "license": "MIT",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Madalin Tache",
+      "email": "madalin@madalin.eu",
+      "homepage": "https://madalin.eu"
+    }
+    ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "files": [ "wp-cli-wordpress-to-https.php" ]
+  }
+}
