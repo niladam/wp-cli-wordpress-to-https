@@ -3,7 +3,7 @@
  * Plugin Name: WordPress to HTTPS
  * Plugin URI:  https://madalin.eu
  * Description: Quickly move WordPress sites to HTTPS
- * Version:     0.1.0
+ * Version:     0.1.1
  * Author:      Madalin Tache
  * Author URI:  https://madalin.eu
  * Donate link: https://ko-fi.com/A204JA0
