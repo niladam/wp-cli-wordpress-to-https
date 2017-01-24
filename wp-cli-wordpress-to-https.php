@@ -1,11 +1,9 @@
 <?php
-namespace WP_CLI\MigrateToSSL;
-
 /**
  * Plugin Name: WordPress to HTTPS
  * Plugin URI:  https://madalin.eu
  * Description: Quickly move WordPress sites to HTTPS
- * Version:     0.1.2
+ * Version:     0.1.3
  * Author:      Madalin Tache
  * Author URI:  https://madalin.eu
  * Donate link: https://ko-fi.com/A204JA0
@@ -167,6 +165,21 @@ if ( ! ( defined('WP_CLI') && WP_CLI ) ) {
 				}
 			}
 
+			public function get_command_args() {
+				return array(
+					'shortdesc' => 'Migrate from HTTP to HTTPS',
+					'synopsis'  => array(
+						array(
+							'type'     => 'positional',
+							'name'     => 'name',
+							'optional' => true,
+							'multiple' => false,
+						),
+					),
+					'when'      => 'after_wp_load',
+				);
+			}
+
 }
 
 		/**
@@ -187,7 +200,7 @@ if ( ! ( defined('WP_CLI') && WP_CLI ) ) {
 		WP_CLI::add_command( 'wp2ssl', array(
 			$convert_site_to_ssl,
 			'convert_to_ssl',
-		), $convert_site_to_ssl->convert_to_ssl(), $args = array('when' => 'after_wp_load') );
+		), $convert_site_to_ssl->get_command_args());
 
 	}
 // }
