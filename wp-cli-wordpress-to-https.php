@@ -5,7 +5,7 @@ namespace WP_CLI_WordPressToSSL;
  * Plugin Name: WordPress to HTTPS
  * Plugin URI:  https://madalin.eu
  * Description: Quickly move WordPress sites to HTTPS, also updating .htaccess
- * Version:     1.0.5
+ * Version:     1.0.6
  * Author:      Madalin Tache
  * Author URI:  https://madalin.eu
  * Donate link: https://ko-fi.com/A204JA0
@@ -281,7 +281,7 @@ EOF;
 	/**
 	 * Register wp2ssl as a WP CLI command.
 	 */
-	WP_CLI::add_command( 'migrate-to-ssl', array(
+	\WP_CLI::add_command( 'migrate-to-ssl', array(
 			$convert_site_to_ssl,
 			'start_conversion',
 		), $convert_site_to_ssl->get_command_args());
