@@ -2,7 +2,7 @@
   "name": "niladam/wp-cli-wordpress-to-https",
   "description": "Quickly move WordPress sites to HTTPS",
   "type": "wp-cli-package",
-  "keywords": ["wp-cli", "git", "dump", "mysql", "search-replace", "uploads", "wordpress", "migrate-to-ssl" "wordpress-to-https"],
+  "keywords": ["wp-cli", "git", "dump", "mysql", "search-replace", "uploads", "wordpress", "migrate-to-ssl", "wordpress-to-https"],
   "homepage": "https://github.com/niladam/wp-cli-wordpress-to-https",
   "license": "MIT",
   "version": "1.0.5",
