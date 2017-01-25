@@ -6,7 +6,7 @@ use \WP_CLI;
  * Plugin Name: WordPress to HTTPS
  * Plugin URI:  https://madalin.eu
  * Description: Quickly move WordPress sites to HTTPS, also updating .htaccess
- * Version:     1.0.8
+ * Version:     1.0.9
  * Author:      Madalin Tache
  * Author URI:  https://madalin.eu
  * Donate link: https://ko-fi.com/A204JA0
@@ -207,8 +207,12 @@ EOF;
 		{
 			if ( ! file_exists($this->htaccess_file) ) {
 				WP_CLI::warning( ".htaccess file is missing, it will be created.");
-				return true;
+				if ( ! touch ( $this->htaccess_file) ) {
+					WP_CLI::warning( ".htaccess could not be created." );
+				}
 			}
+
+			return true;
 
 
 			if ( ! copy($this->htaccess_file, $this->home_dir . '/.htacces.' . $this->file_timestamp)) {
